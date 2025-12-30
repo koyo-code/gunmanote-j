@@ -1,5 +1,7 @@
 @use "./information" as *;
-
+@use "swiper/css";
+@use "swiper/css/navigation";
+@use "swiper/css/effect-fade";
 .load-progress-bar {
 	background: var(--green);
 }

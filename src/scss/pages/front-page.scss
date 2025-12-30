@@ -40,13 +40,12 @@
 		position: relative;
 		overflow: hidden;
 		z-index: 0;
-		height: 55rem;
+		height: 65rem;
 		width: 100%;
-		margin-top: calc(var(--header-height) + var(--header-top) * 2);
 		@include break(1440) {
-			height: 45rem;
+			height: 55rem;
 			@include break() {
-				height: 30rem;
+				height: 45rem;
 			}
 		}
 

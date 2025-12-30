@@ -1,7 +1,3 @@
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
-import "swiper/css/effect-fade";
 import "../scss/main.scss";
 import { Start } from "./start";
 

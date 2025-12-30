@@ -66,9 +66,9 @@ export default function () {
           navigator.clipboard
             .writeText(url)
             .then(() => {
-              copyIcon.setAttribute("src", imgs + "/common/check.svg");
+              copyIcon.setAttribute("src", window.RESOURCE + "/imgs/common/check.svg");
               setTimeout(() => {
-                copyIcon.setAttribute("src", imgs + "/common/copy.svg");
+                copyIcon.setAttribute("src", window.RESOURCE + "/imgs/common/copy.svg");
               }, 1000);
             })
             .catch((err) => {

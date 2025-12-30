@@ -14,7 +14,7 @@
 	box-sizing: content-box;
 	z-index: 100;
 	position: fixed;
-	width: calc(100% - (var(--side-space) * 2));
+	width: calc(100% - (var(--side-space)));
 	height: var(--header-height);
 	top: var(--header-top);
 	left: 50%;
