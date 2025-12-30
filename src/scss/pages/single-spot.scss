@@ -1,0 +1,371 @@
+@use "../common" as *;
+
+[data-page="single-spot"] {
+	.swiper-container {
+		overflow: hidden;
+		.swiper {
+			width: 50%;
+			margin: 0 auto;
+			overflow: hidden;
+			@include break(1280) {
+				width: 70%;
+				@include break() {
+					width: 90%;
+				}
+			}
+
+			.swiper-wrapper {
+				height: auto;
+				width: 100%;
+			}
+		}
+
+		.slider {
+			overflow: visible;
+			.swiper-wrapper {
+				cursor: grab;
+				.swiper-slide {
+					height: 100%;
+					width: 100%;
+					padding: 0 1.5rem;
+					@include break(1240) {
+						padding: 0 1rem;
+						@include break() {
+							padding: 0 0.8rem;
+						}
+					}
+					img {
+						border-radius: 1.5rem;
+					}
+				}
+			}
+			.swiper-buttons {
+				position: absolute;
+				bottom: 2rem;
+				right: -2rem;
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+				@include break() {
+					gap: 0.5rem;
+					bottom: 0.5rem;
+					right: -1rem;
+				}
+			}
+			.swiper-button-prev,
+			.swiper-button-next {
+				position: static;
+				margin-top: 0;
+				height: auto;
+				width: 6rem;
+				aspect-ratio: 1;
+				background: #fff;
+				border-radius: 9999px;
+				border: solid 1px #000;
+				transition: scale 0.3s;
+				@include hover {
+					scale: 1.1;
+				}
+				@include break() {
+					width: 5rem;
+				}
+				&::after {
+					content: "";
+					width: 0.8rem;
+					height: auto;
+					aspect-ratio: 1;
+					background: #000;
+					transition: background 0.3s;
+				}
+			}
+
+			.swiper-button-prev {
+				&::after {
+					clip-path: polygon(0 50%, 100% 0, 100% 100%);
+				}
+			}
+			.swiper-button-next {
+				&::after {
+					clip-path: polygon(0 0, 0% 100%, 100% 50%);
+				}
+			}
+		}
+		.thumbnail {
+			margin-top: 3rem;
+			overflow: hidden;
+			@include break() {
+				margin-top: 1.5rem;
+			}
+			.swiper-wrapper {
+				&--center {
+					justify-content: center;
+				}
+			}
+			.swiper-slide {
+				overflow: hidden;
+				border-radius: 1rem;
+				height: auto;
+				width: 100%;
+				opacity: 0.5;
+				@include break() {
+					border-radius: 0.6rem;
+				}
+				&.swiper-slide-thumb-active {
+					opacity: 1;
+					outline: solid 3px var(--green);
+					outline-offset: -3px;
+					@include break() {
+						outline: solid 2px var(--green);
+						outline-offset: -2px;
+					}
+				}
+			}
+		}
+	}
+
+	.swiper-container {
+		position: relative;
+		overflow: visible;
+		.swiper-button-prev,
+		.swiper-button-next {
+			background: var(--white);
+			border: solid 1px var(--black);
+			width: 6rem;
+			height: auto;
+			border-radius: 9999px;
+			aspect-ratio: 1;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			transition: background 0.3s, scale 0.3s;
+			@include hover {
+				border: solid 1px var(--green);
+				background: var(--green);
+				scale: 0.95;
+				&::before {
+					background: var(--white);
+				}
+			}
+			@include break(619) {
+				width: 5rem;
+			}
+
+			&::before {
+				content: "";
+				transition: background 0.3s;
+				height: auto;
+				width: 1.2rem;
+				aspect-ratio: 1;
+				background: var(--black);
+				clip-path: polygon(0 0, 0% 100%, 100% 50%);
+				@include break(619) {
+					width: 1rem;
+				}
+			}
+			&::after {
+				content: "";
+			}
+			svg {
+				display: none;
+			}
+		}
+		.swiper-button-prev {
+			margin-top: 0;
+			top: 50%;
+			left: 0;
+			translate: -40%;
+			@include break() {
+				translate: -25%;
+			}
+			&::before {
+				clip-path: polygon(100% 0, 0 50%, 100% 100%);
+			}
+			&--1 {
+				translate: 1rem -50%;
+				width: 5rem;
+				@include break() {
+					width: 4rem;
+					translate: 0.5rem -50%;
+				}
+				&::before {
+					width: 1rem;
+					@include break() {
+						width: 0.8rem;
+					}
+				}
+			}
+		}
+		.swiper-button-next {
+			margin-top: 0;
+			top: 50%;
+			right: 0;
+			translate: 40%;
+			@include break() {
+				translate: 25%;
+			}
+			&::before {
+				clip-path: polygon(0 0, 0% 100%, 100% 50%);
+			}
+			&--1 {
+				translate: -1rem -50%;
+				width: 5rem;
+				@include break() {
+					width: 4rem;
+					translate: -0.5rem -50%;
+				}
+				&::before {
+					width: 1rem;
+					@include break() {
+						width: 0.8rem;
+					}
+				}
+			}
+		}
+
+		&.seasonSlider {
+			.swiper {
+				width: 100%;
+				padding-bottom: 2rem;
+			}
+		}
+	}
+
+	.page-info {
+		width: 50%;
+		margin: 0 auto;
+		position: relative;
+		margin-bottom: 2rem;
+
+		@include break(1280) {
+			width: 70%;
+			@include break() {
+				width: 90%;
+				margin-bottom: 1.5rem;
+			}
+		}
+
+		&__inner {
+			&--deco {
+				position: relative;
+				&::before {
+					content: "";
+					width: 0.4rem;
+					height: 100%;
+					position: absolute;
+					top: 50%;
+					left: 0;
+					translate: 0 -50%;
+					background: var(--red);
+				}
+			}
+		}
+		&__bottom {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+			@include break() {
+				gap: 0.6rem;
+			}
+		}
+		&__genres {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 1rem;
+			@include break() {
+				gap: 0.5rem 0.8rem;
+			}
+		}
+		&__wrap {
+			display: flex;
+			align-items: flex-start;
+			gap: 0.8rem;
+			@include break() {
+				gap: 0.5rem;
+			}
+		}
+		&__genre {
+			&-title {
+				margin-top: 0.5rem;
+				white-space: nowrap;
+				@include font(16, 16, 0);
+				@include break() {
+					margin-top: 0.4rem;
+					font-size: 1.4rem;
+				}
+			}
+			&-link {
+				display: block;
+				border: solid 1px var(--black);
+				padding: 0.5rem 1.2rem;
+				border-radius: 0.4rem;
+				@include font(14, 14, 0);
+				@include break() {
+					padding: 0.4rem 1rem;
+					font-size: 1.3rem;
+				}
+			}
+		}
+
+		&__area {
+			display: flex;
+			align-items: center;
+			margin-bottom: 1.5rem;
+		}
+		&__municipalities {
+			width: fit-content;
+			padding: 0.5rem 1.5rem;
+			border: solid 1px var(--black);
+			background: var(--white);
+			border-left: none;
+			@include font(14, 14, 0);
+			@include break() {
+				font-size: 1.3rem;
+			}
+		}
+		&__category {
+			color: var(--white);
+			width: fit-content;
+			padding: 0.5rem 1.5rem;
+			@include font(14, 14, 0);
+			@include break() {
+				font-size: 1.3rem;
+			}
+			&--seimo {
+				background: var(--green);
+				border: solid 1px var(--green);
+				border-right: none;
+			}
+			&--tomo {
+				background: var(--red);
+				border: solid 1px var(--red);
+				border-right: none;
+			}
+			&--tyumo {
+				background: var(--yellow);
+				border: solid 1px var(--yellow);
+				border-right: none;
+			}
+			&--hokumo {
+				background: var(--blue);
+				border: solid 1px var(--blue);
+				border-right: none;
+			}
+		}
+		&__date {
+			@include font(14, 14, 0);
+			@include break() {
+				font-size: 1.3rem;
+			}
+		}
+		&__title {
+			@include font(28, 42, 0);
+			font-family: var(--mont);
+			@include break() {
+				font-size: 2.2rem;
+			}
+		}
+		&__img {
+			margin-bottom: 3rem;
+		}
+	}
+}

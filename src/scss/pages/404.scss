@@ -1,0 +1,13 @@
+@use "../common" as *;
+
+[data-page="404"] {
+	.not-found-text {
+		text-align: center;
+		margin-bottom: 3rem;
+		@include font(16, 24, 20);
+		@include break() {
+			margin-bottom: 2rem;
+			font-size: 1.4rem;
+		}
+	}
+}

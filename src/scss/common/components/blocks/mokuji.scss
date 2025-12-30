@@ -1,0 +1,57 @@
+@use "../../information" as *;
+
+.editor {
+	&__inner {
+		.mokuji {
+			max-width: 100%;
+			min-width: 50%;
+			width: fit-content;
+			margin: 5rem auto;
+			border-radius: 1.5rem;
+			padding: 1.5rem 2rem 2.5rem;
+			background: var(--bg-color);
+			@include break() {
+				min-width: 80%;
+				margin: 3rem auto;
+				@include break(540) {
+					width: 100%;
+					min-width: 100%;
+				}
+			}
+			&__inner {
+				display: flex;
+				flex-direction: column;
+				gap: 1.5rem;
+			}
+			&__title {
+				margin-top: 0;
+				margin-bottom: 0;
+				text-align: center;
+				position: relative;
+				@include break() {
+					font-size: 1.6rem;
+				}
+				&::after {
+					content: "";
+					position: absolute;
+					left: 50%;
+					bottom: 0;
+					translate: -50% 0;
+					height: 1px;
+					width: 2rem;
+					background: var(--black);
+				}
+			}
+			&__list {
+				margin-top: 0;
+				margin-bottom: 0;
+				padding: 0;
+				background: none;
+			}
+			&__item {
+				font-size: 1.4rem;
+				padding-right: 0.5rem;
+			}
+		}
+	}
+}

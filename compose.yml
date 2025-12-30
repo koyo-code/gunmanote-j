@@ -1,0 +1,27 @@
+services:
+    db:
+        image: mysql:8.0
+        volumes:
+            - ./db:/var/lib/mysql
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_DATABASE: db_local
+            MYSQL_USER: wp_user
+            MYSQL_PASSWORD: password
+    WordPress:
+        image: wordpress:latest
+        restart: always
+        depends_on:
+            - db
+        ports:
+            - ${DEV_PORT}:80
+        environment:
+            WORDPRESS_DB_HOST: db:3306
+            WORDPRESS_DB_USER: wp_user
+            WORDPRESS_DB_PASSWORD: password
+            WORDPRESS_DB_NAME: db_local
+            WORDPRESS_DEBUG:
+        volumes:
+            - ./src:/var/www/html/wp-content/themes/${THEME_NAME}/
+            - ./wp:/var/www/html

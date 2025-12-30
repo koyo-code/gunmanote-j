@@ -1,0 +1,414 @@
+@use "../information" as *;
+
+.form {
+	position: relative;
+	z-index: 10;
+	margin-bottom: 5rem;
+	@include break() {
+		margin-bottom: 3rem;
+	}
+	&__overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba($color: #000000, $alpha: 0.3);
+		z-index: 50;
+		opacity: 0;
+		visibility: hidden;
+		// transition: opacity 0.3s, visibility 0.3s;
+		&.is-active {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+	&__modal-send {
+		width: 30rem;
+		height: 6rem;
+		background: var(--green);
+		color: var(--white);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 0 auto;
+		border-radius: 6rem;
+	}
+
+	input[type="checkbox"] {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		border: 0;
+	}
+	input[type="checkbox"]:checked + .form__label-text::after {
+		opacity: 1;
+	}
+
+	&__label-text {
+		cursor: pointer;
+		display: inline-block;
+		user-select: none;
+		padding: 0.5rem 0 0.5rem 2.5rem;
+		position: relative;
+		@include break() {
+			padding-left: 2.2rem;
+		}
+		&::before {
+			content: "";
+			display: block;
+			width: 1.6rem;
+			height: 1.6rem;
+			position: absolute;
+			top: 50%;
+			left: 0;
+			translate: 0 -50%;
+			border: 1px solid var(--black);
+		}
+		&::after {
+			content: "";
+			display: block;
+			width: 0.6rem;
+			height: 1.2rem;
+			position: absolute;
+			top: 50%;
+			left: 0.5rem;
+			rotate: 40deg;
+			translate: 0 -50%;
+			transform-origin: center right;
+			border-right: 2px solid var(--red);
+			border-bottom: 2px solid var(--red);
+			opacity: 0;
+		}
+	}
+
+	&__label {
+		&::after {
+			margin-left: 0.5rem;
+			content: ":";
+		}
+		@include break() {
+			font-size: 1.4rem;
+		}
+	}
+
+	&__container {
+		position: relative;
+	}
+	&__wrap {
+		display: flex;
+		align-items: center;
+		position: relative;
+		flex-wrap: wrap;
+		gap: 0.8rem;
+	}
+
+	&__cat-wrap {
+		display: flex;
+		flex-direction: column;
+		&:not(:last-child) {
+			margin-bottom: 4rem;
+			@include break() {
+				margin-bottom: 2.5rem;
+			}
+		}
+	}
+
+	&__cat-title {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		width: fit-content;
+
+		position: relative;
+
+		p {
+			@include font(18, 18, 30, "px", "me");
+			font-weight: 500;
+			@include break() {
+				font-size: 1.6rem;
+			}
+		}
+	}
+
+	&__list {
+		border-top: solid 1px var(--black);
+		margin-top: 1.5rem;
+		padding-top: 1.5rem;
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 2.5rem;
+		padding-left: 3rem;
+		@include break() {
+			margin-top: 1rem;
+			padding-top: 1rem;
+			padding-left: 1.5rem;
+			gap: 1.5rem;
+		}
+	}
+
+	&__item {
+		display: flex;
+		align-items: center;
+		gap: 0.8rem;
+		p {
+			@include font(16, 16, 30, "px", "me");
+			@include break() {
+				font-size: 1.4rem;
+			}
+		}
+	}
+
+	&__modal {
+		z-index: 60;
+		position: absolute;
+		top: calc(100% + 1.5rem);
+		left: 0;
+		width: 100%;
+		background: var(--white);
+		border: solid 1px var(--black);
+		border-radius: 1.5rem;
+		@include mesh;
+		padding: 3rem 4rem;
+
+		opacity: 0;
+		visibility: hidden;
+
+		@include break() {
+			position: fixed;
+			padding: 1.5rem 2rem;
+			top: 50%;
+			left: 50%;
+			width: 90%;
+			translate: -50% -50%;
+		}
+
+		&.is-active {
+			opacity: 1;
+			visibility: visible;
+		}
+
+		&-contents {
+			max-height: 35rem;
+			overflow-y: auto;
+			@include break() {
+				max-height: 40vh;
+			}
+			&--no-child {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 2rem;
+				.form {
+					&__cat-wrap {
+						margin-bottom: 0;
+					}
+					&__cat-title {
+						p {
+							font-size: 1.6rem;
+							font-weight: 400;
+							@include break() {
+								font-size: 1.4rem;
+							}
+						}
+					}
+				}
+			}
+		}
+		&-close {
+			position: absolute;
+			top: 1rem;
+			right: 1rem;
+			height: auto;
+			width: 3.4rem;
+			aspect-ratio: 1;
+			&::before,
+			&::after {
+				content: "";
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				translate: -50% -50%;
+				height: 1px;
+				width: 100%;
+				background: var(--black);
+			}
+			&::before {
+				rotate: -45deg;
+			}
+			&::after {
+				rotate: 45deg;
+			}
+		}
+	}
+
+	&__cat-button {
+		height: 5rem;
+		width: 18rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: solid 1px var(--black);
+		background: var(--white);
+		touch-action: manipulation;
+		gap: 1rem;
+		@include font(16, 16, 0, "px", "me");
+		@include break() {
+			height: 4rem;
+			width: auto;
+			gap: 0.5rem;
+			padding: 0 1rem;
+			font-size: 1.4rem;
+		}
+		&.is-active {
+			color: var(--white);
+			background: var(--red);
+			&::after {
+				background: var(--white);
+				clip-path: none;
+				border-radius: 9999px;
+				aspect-ratio: 1;
+			}
+		}
+		&:last-child {
+			border-right: none;
+		}
+		&::after {
+			content: "";
+			width: 1rem;
+			height: auto;
+			aspect-ratio: 4 / 3;
+			background: var(--black);
+			clip-path: polygon(100% 0, 0 0, 50% 100%);
+		}
+	}
+	&__window-wrap {
+		position: relative;
+		width: fit-content;
+		@include break() {
+			width: 100%;
+		}
+	}
+	&__window {
+		height: 5rem;
+		width: 25rem;
+		display: block;
+		border: solid 1px var(--black);
+		position: relative;
+		background: var(--white);
+		padding: 1rem;
+		@include font(16, 16, 0, "px", "me");
+		@include break() {
+			height: 4rem;
+			width: 100%;
+		}
+	}
+
+	&__inner {
+		padding: 3rem;
+		background: var(--bg-color);
+		border-radius: 1.5rem;
+		margin: 0 auto;
+		max-width: fit-content;
+		width: 100%;
+		@include break() {
+			padding: 2rem;
+		}
+	}
+	&__title {
+		margin-bottom: 1.5rem;
+		@include font(16, 16, 20);
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		font-weight: bold;
+		img {
+			width: 1.6rem;
+		}
+	}
+
+	&__cross {
+		position: absolute;
+		top: 50%;
+		right: 1rem;
+		translate: 0 -50%;
+		width: 1.6rem;
+		height: auto;
+		aspect-ratio: 1;
+		cursor: pointer;
+		// display: none;
+		// &.is-active {
+		//   display: block;
+		// }
+		&::before,
+		&::after {
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 0;
+			height: 1px;
+			width: 100%;
+			background: #000;
+		}
+		&::before {
+			rotate: 45deg;
+		}
+		&::after {
+			rotate: -45deg;
+		}
+	}
+
+	&__buttons {
+		margin-top: 1.5rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 0.8rem;
+		@include break() {
+			margin-top: 1rem;
+			gap: 4%;
+		}
+	}
+	&__submit {
+		color: var(--white);
+		width: 20rem;
+		border: solid 1px var(--green);
+		background: var(--green);
+		height: 5rem;
+		padding: 1rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		touch-action: manipulation;
+		border-radius: 0.5rem;
+		@include font(16, 16, 0, "px", "me");
+		@include break() {
+			width: 51%;
+			font-size: 1.4rem;
+			height: 4.4rem;
+		}
+	}
+	&__reset {
+		width: 16rem;
+		color: var(--black);
+		background: var(--white);
+		border: solid 1px var(--black);
+		height: 5rem;
+		padding: 1rem;
+		display: flex;
+		touch-action: manipulation;
+		justify-content: center;
+		align-items: center;
+		border-radius: 0.5rem;
+		@include font(16, 16, 0, "px", "me");
+		@include break() {
+			font-size: 1.4rem;
+			height: 4.4rem;
+			width: 45%;
+		}
+	}
+}

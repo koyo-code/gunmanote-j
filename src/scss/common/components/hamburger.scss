@@ -1,0 +1,123 @@
+@use "../information" as *;
+
+.hamburger {
+	height: 100%;
+	touch-action: manipulation;
+	width: var(--header-height);
+	background: var(--green);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 0 1.5rem 1.5rem 0;
+	@include break() {
+		border-radius: 0 1rem 1rem 0;
+	}
+	@include hover {
+		.hamburger__bar {
+			&--1 {
+				top: 40%;
+			}
+			&--2 {
+				opacity: 0;
+			}
+			&--3 {
+				top: 80%;
+			}
+		}
+	}
+	&.is-active {
+		.hamburger__bar {
+			&--1 {
+				rotate: 20deg;
+				top: 50%;
+			}
+			&--2 {
+				opacity: 0;
+			}
+			&--3 {
+				top: 50%;
+				rotate: -20deg;
+			}
+		}
+	}
+	&__inner {
+		height: 20px;
+		width: 40px;
+		position: relative;
+		@include break() {
+			height: 16px;
+			width: 32px;
+		}
+	}
+	&__bar {
+		transition: top 0.3s, opacity 0.3s, rotate 0.3s;
+		background: var(--white);
+		height: 3px;
+		width: 100%;
+		position: absolute;
+		translate: 0 -50%;
+		@include break() {
+			height: 2px;
+		}
+		&--1 {
+			top: 0;
+		}
+		&--2 {
+			top: 50%;
+		}
+		&--3 {
+			top: 100%;
+		}
+	}
+}
+
+.hamburger-nav {
+	position: absolute;
+	max-width: calc(100% - var(--header-top) * 2);
+	background: var(--bg-color);
+	padding: 20px 25px;
+	top: calc(100% + var(--header-top));
+	right: 0;
+	border: solid 1px var(--black);
+	box-shadow: 0px 0px 0.5rem 3px rgba(0, 0, 0, 0.1);
+	overflow: hidden;
+	border-radius: 30px;
+	transition: opacity 0.3s, visibility 0.3s;
+
+	opacity: 0;
+	visibility: hidden;
+
+	@include break() {
+		padding: 20px;
+	}
+
+	&.is-active {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	&__inner {
+	}
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 1rem;
+	}
+	&__item {
+	}
+	&__link {
+		border-bottom: dotted 1px var(--gray);
+		display: block;
+		padding: 1.5rem 0;
+		@include font(16, 16, 60, "px", "me");
+		@include break() {
+			font-size: 1.4rem;
+		}
+	}
+	&__en {
+		margin-left: 0.5rem;
+		@include font(12, 12, 60, "px", "me");
+		color: var(--red);
+	}
+}

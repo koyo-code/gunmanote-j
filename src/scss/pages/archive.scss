@@ -1,0 +1,38 @@
+@use "../common" as *;
+
+[data-page="archive-spot"],
+[data-page="archive-articles"],
+[data-page="search-articles"] {
+	.article-item {
+		display: contents;
+		&__content {
+		}
+		&__link {
+			display: grid;
+			grid-template-rows: subgrid;
+			grid-row: span 2;
+			padding: 2.5rem 2rem;
+			border-radius: 1.5rem;
+			border: solid 1px var(--gray);
+			position: relative;
+			@include hover {
+				&::after {
+					opacity: 1;
+				}
+			}
+			&::after {
+				content: "";
+				height: 100%;
+				width: 100%;
+				border: solid 1px var(--red);
+				position: absolute;
+				top: 0;
+				left: 0;
+				border-radius: 1.5rem;
+				pointer-events: none;
+				opacity: 0;
+				transition: opacity 0.3s;
+			}
+		}
+	}
+}

@@ -1,0 +1,108 @@
+@use "../information" as *;
+
+:root {
+	--header-top: 1.5rem;
+	--header-height: 7.6rem;
+	@include break() {
+		--header-top: 1rem;
+		--header-height: 6.4rem;
+	}
+}
+
+.header {
+	translate: -50%;
+	box-sizing: content-box;
+	z-index: 100;
+	position: fixed;
+	width: calc(100% - (var(--side-space) * 2));
+	height: var(--header-height);
+	top: var(--header-top);
+	left: 50%;
+	border-radius: 1.5rem;
+	background: var(--white);
+	box-shadow: 0px 0px 0.5rem 0.3rem rgba(0, 0, 0, 0.1);
+	@include break() {
+		border-radius: 1rem;
+		width: calc(100% - (var(--header-top) * 2));
+	}
+	&__inner {
+		position: relative;
+		height: inherit;
+		display: flex;
+		justify-content: space-between;
+	}
+	&__logo {
+		width: 15rem;
+		margin-left: 3rem;
+		@include break(1140) {
+			margin-left: 2.5rem;
+			width: 14rem;
+			@include break() {
+				width: 12.5rem;
+				margin-left: 2rem;
+			}
+		}
+	}
+	&__left {
+		display: flex;
+		align-items: center;
+	}
+
+	&__right {
+		display: flex;
+		justify-content: flex-end;
+	}
+}
+
+.g-nav {
+	height: 100%;
+	@include break(640) {
+		display: none;
+	}
+	&__list {
+		height: inherit;
+		display: flex;
+		align-items: center;
+		gap: 2rem;
+		@include break(1140) {
+			gap: 1.2rem;
+		}
+	}
+	&__item {
+		position: relative;
+		height: inherit;
+	}
+	&__link {
+		height: inherit;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transition: color 0.3s;
+		@include font(16, 16, 0);
+		@include break(1140) {
+			font-size: 1.4rem;
+		}
+		&::before {
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: -1rem;
+			translate: 0 -50%;
+			height: auto;
+			width: 0.8rem;
+			clip-path: polygon(0 0, 0% 100%, 100% 50%);
+			background: var(--green);
+			aspect-ratio: 1;
+			opacity: 0;
+			visibility: hidden;
+			translate: 0 -50%;
+		}
+		&.is-active {
+			color: var(--green);
+			&::before {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	}
+}

@@ -1,0 +1,183 @@
+@use "../information" as *;
+
+:root {
+	--menu-right: 3rem;
+	@include break() {
+		--menu-right: 1.5rem;
+	}
+}
+.menu {
+	position: fixed;
+	bottom: 3rem;
+	width: auto;
+	right: var(--menu-right);
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+
+	max-width: calc(100% - (var(--menu-right) * 2));
+
+	z-index: 45;
+	gap: 1rem;
+
+	opacity: 0;
+	visibility: hidden;
+	translate: 0.5rem 0;
+
+	transition: opacity 0.3s, visibility 0.3s, translate 0.3s;
+	@include break() {
+		bottom: 2rem;
+		gap: 0.5rem;
+	}
+
+	&.is-active {
+		opacity: 1;
+		visibility: visible;
+		translate: 0 0;
+	}
+}
+
+.toc {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	position: relative;
+
+	&__button {
+		height: auto;
+		width: 5rem;
+		aspect-ratio: 1;
+		display: flex;
+		justify-content: center;
+		z-index: 10;
+		align-items: center;
+		border-radius: 1rem;
+		background: var(--white);
+		border: solid 1px var(--black);
+		touch-action: manipulation;
+
+		transition: background 0.3s;
+
+		&.is-active {
+			background: var(--green);
+			border-color: var(--green);
+			&::after {
+				background-color: var(--white);
+			}
+		}
+
+		&::after {
+			content: "";
+			width: 1.6rem;
+			transition: background 0.3s;
+			height: auto;
+			aspect-ratio: 18 / 16;
+			-webkit-mask-image: url($imgs + "/common/menu.svg");
+			-webkit-mask-size: contain;
+			-webkit-mask-repeat: no-repeat;
+			-webkit-mask-position: center;
+			mask-image: url($imgs + "/common/menu.svg");
+			mask-size: contain;
+			mask-repeat: no-repeat;
+			mask-position: center;
+			background-color: var(--black);
+		}
+	}
+
+	&-menu {
+		border-radius: 1rem;
+		background: var(--white);
+		border: solid 1px var(--black);
+		position: absolute;
+		right: calc(100% + 1.5rem);
+		bottom: 0;
+
+		opacity: 0;
+		visibility: hidden;
+
+		transition: opacity 0.3s, visibility 0.3s;
+
+		&.is-active {
+			opacity: 1;
+			visibility: visible;
+		}
+
+		&__inner {
+			position: relative;
+			max-height: 50vh;
+			overflow-y: auto;
+			max-width: 35rem;
+			width: calc(100vw - var(--menu-right) * 2 - 5rem * 2);
+			margin: 0 auto;
+			padding: 2rem 1.5rem;
+			position: relative;
+		}
+
+		&__title {
+			border-bottom: var(--black) solid 1px;
+			padding-bottom: 1.5rem;
+			text-align: center;
+			@include font(16, 16, 20);
+		}
+		&__list {
+			padding: 0 1.5rem;
+			display: flex;
+			flex-direction: column;
+			counter-reset: number 0;
+			@include break() {
+				padding: 0;
+			}
+		}
+		&__item {
+			display: flex;
+			border-bottom: dotted 1px var(--gray);
+			@include font(14, 21, 20);
+			&-link {
+				display: block;
+				padding-top: 1.5rem;
+				padding-bottom: 1.5rem;
+				width: 100%;
+				&::before {
+					margin-right: 0.5rem;
+					content: counter(number) ".";
+					counter-increment: number 1;
+				}
+			}
+		}
+	}
+}
+.page-top {
+	height: auto;
+	width: 5rem;
+	position: relative;
+	touch-action: manipulation;
+	border: solid 1px var(--black);
+	aspect-ratio: 1;
+	background: var(--white);
+	border-radius: 1rem;
+
+	transition: background 0.3s;
+
+	@include hover {
+		background: var(--green);
+		border-color: var(--green);
+		&::after {
+			background: var(--white);
+		}
+	}
+
+	&::after {
+		position: absolute;
+		content: "";
+		transition: background 0.3s;
+		width: 0.8rem;
+		height: auto;
+		aspect-ratio: 1;
+		background: var(--black);
+		top: 50%;
+		left: 50%;
+		translate: -50% -50%;
+		clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+	}
+}

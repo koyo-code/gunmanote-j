@@ -1,0 +1,73 @@
+@use "../information" as *;
+
+.author {
+	border-radius: 1rem;
+	padding: 0.3rem;
+	border: solid 1px var(--gray);
+	background: var(--white);
+	&__inner {
+		border-radius: 1rem;
+		overflow: hidden;
+	}
+	&__bg-img {
+		height: auto;
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		img {
+			height: 100%;
+			width: 100%;
+			object-fit: cover;
+		}
+	}
+	&__main-img {
+		--author-img-width: 9.4rem;
+		margin: calc(var(--author-img-width) * 0.5 * -1) auto 1.5rem;
+		height: auto;
+		width: var(--author-img-width);
+		aspect-ratio: 1;
+		border-radius: 9999px;
+		overflow: hidden;
+		img {
+			height: 100%;
+			width: 100%;
+			object-fit: cover;
+		}
+	}
+	&__content {
+		padding: 0 1.5rem 1.5rem;
+	}
+	&__name {
+		text-align: center;
+		@include font(16, 16, 60);
+		margin-bottom: 1rem;
+	}
+	&__text {
+		@include font(14, 21, 20);
+		margin-bottom: 1rem;
+	}
+	&__infos {
+		display: flex;
+		flex-direction: column;
+		gap: 0.8rem;
+		margin-bottom: 1rem;
+	}
+	&__info {
+		position: relative;
+		padding-left: 1.5rem;
+		&::before {
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 0;
+			translate: 0 -50%;
+			background: var(--black);
+			width: 0.8rem;
+			height: auto;
+			aspect-ratio: 1;
+			clip-path: polygon(0 0, 0% 100%, 100% 50%);
+		}
+	}
+	&__link {
+		@include font(14, 14, 0);
+	}
+}

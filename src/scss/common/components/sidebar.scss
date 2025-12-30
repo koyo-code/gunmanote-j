@@ -1,0 +1,167 @@
+@use "../information" as *;
+
+.sidebar {
+	width: 100%;
+	width: 30rem;
+	display: flex;
+	flex-direction: column;
+	gap: 3rem;
+	@include break(1024) {
+		width: 100%;
+	}
+	&__title {
+		padding: 1rem 1rem 1rem 0;
+		margin-bottom: 1rem;
+		position: relative;
+		@include font(16, 16, 20);
+		&::before,
+		&::after {
+			content: "";
+			height: 2px;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+		}
+		&::before {
+			background: var(--gray);
+			width: 100%;
+		}
+		&::after {
+			background: var(--red);
+			width: 5rem;
+		}
+	}
+}
+
+.tag-area {
+	&__list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+	}
+	&__item {
+		&-link {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 0.4rem 0.8rem;
+			border-radius: 0.2rem;
+			border: solid 1px var(--black);
+			background: var(--white);
+			@include font(14, 14, 30);
+			transition: color 0.3s, background 0.3s;
+			@include hover {
+				border: solid 1px var(--green);
+				color: var(--white);
+				background: var(--green);
+			}
+		}
+	}
+	&__title {
+		@include font(14, 14, 0);
+		margin-bottom: 1rem;
+	}
+}
+
+.other {
+	&__list {
+		display: flex;
+		flex-direction: column;
+	}
+	&__item {
+		&:nth-child(1) {
+			.other {
+				&__link {
+					padding-top: 0;
+				}
+			}
+		}
+		&--column {
+			.other {
+				&__link {
+					flex-direction: column;
+					@include break(1024) {
+						flex-direction: row;
+					}
+				}
+				&__img {
+					max-width: 100%;
+					min-width: 100%;
+					@include break(1024) {
+						max-width: 10rem;
+						min-width: 10rem;
+					}
+				}
+			}
+		}
+	}
+	&__link {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		padding: 1rem 0;
+		position: relative;
+		&::before,
+		&::after {
+			content: "";
+			height: 1px;
+			width: 100%;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+		}
+		&::before {
+			background: var(--gray);
+		}
+		&::after {
+			scale: 0 1;
+			background: var(--red);
+			transition: scale 0.3s;
+			transform-origin: left top;
+		}
+		@include hover {
+			&::after {
+				scale: 1 1;
+			}
+		}
+	}
+	&__img {
+		max-width: 10rem;
+		min-width: 10rem;
+	}
+	&__content {
+	}
+	&__title {
+		@include font(14, 21, 20);
+		font-weight: bold;
+		margin: 0.4rem 0;
+	}
+	&__text {
+		@include font(12, 16, 20);
+		overflow: hidden;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+	}
+	&__category {
+		width: fit-content;
+		color: var(--white);
+		@include font(12, 12, 20);
+		padding: 0.4rem 0.5rem;
+		&--article {
+			background: var(--red);
+		}
+		&--seimo {
+			background: var(--green);
+		}
+		&--tomo {
+			background: var(--red);
+		}
+		&--tyumo {
+			background: var(--yellow);
+		}
+		&--hokumo {
+			background: var(--blue);
+		}
+	}
+}

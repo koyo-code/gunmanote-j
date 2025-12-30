@@ -1,0 +1,56 @@
+@use "../../information" as *;
+
+.speak {
+	--wide: 8rem;
+	--gap: 2rem;
+
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: var(--gap);
+	@include break() {
+		--wide: 6rem;
+		--gap: 1.5rem;
+	}
+	&__text {
+		max-width: calc(100% - var(--wide) - var(--gap) - 10%);
+		height: fit-content;
+		@include font(16, 27, 30);
+		padding: 1.5rem;
+		background: var(--bg-color);
+		border-radius: 10px;
+		margin: 0;
+		position: relative;
+		display: flex;
+		align-items: center;
+		@include break() {
+			font-size: 1.4rem;
+			max-width: 100%;
+		}
+		&::after {
+			content: "";
+			position: absolute;
+			top: 50%;
+			right: 0;
+			translate: 50% -50%;
+			height: auto;
+			width: 2rem;
+			aspect-ratio: 1;
+			background: var(--bg-color);
+			clip-path: polygon(0 0, 0% 100%, 100% 50%);
+			@include break() {
+				width: 1.8rem;
+			}
+		}
+	}
+	&__image {
+		max-height: var(--wide);
+		max-width: var(--wide);
+		min-height: var(--wide);
+		min-width: var(--wide);
+		object-fit: cover;
+		border-radius: 9999px;
+	}
+}

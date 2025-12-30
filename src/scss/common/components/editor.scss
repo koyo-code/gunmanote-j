@@ -1,0 +1,211 @@
+@use "../information" as *;
+
+.editor {
+	word-break: break-all;
+	h2 {
+		margin-top: 4rem;
+		margin-bottom: 2rem;
+		@include font(26, 34, 60);
+		position: relative;
+		padding-bottom: 1rem;
+		@include break() {
+			margin-top: 3rem;
+			font-size: 1.8rem;
+		}
+		&::before {
+			content: "";
+			margin-block-end: 0;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			height: 2px;
+			width: 100%;
+			background: var(--gray);
+		}
+		&::after {
+			margin-block-start: 0;
+			content: "";
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			height: 2px;
+			width: 6rem;
+			background: var(--red);
+		}
+	}
+	&__inner {
+		& > *:first-child {
+			margin-top: 0;
+		}
+
+		.children {
+			margin: 1.5rem 0 0 0;
+			background: #fff;
+		}
+		table {
+			width: 100%;
+			tr {
+				td {
+					padding: 1rem;
+					border: solid 1px var(--red);
+					@include font(16, 24, 20);
+					@include break() {
+						font-size: 1.4rem;
+					}
+					&:nth-child(1) {
+						text-align: center;
+						vertical-align: middle;
+						white-space: nowrap;
+						color: var(--white);
+						background: var(--red);
+					}
+
+					ruby {
+						display: flex;
+						flex-direction: column-reverse;
+						rt {
+							font-size: 1rem;
+						}
+					}
+				}
+			}
+		}
+		iframe {
+			width: 100%;
+			display: block;
+			margin: 2rem 0;
+		}
+
+		iframe[src*="map"] {
+			height: auto;
+			aspect-ratio: 5 / 3;
+			@include break() {
+				aspect-ratio: 3 / 2;
+			}
+		}
+		figure {
+			margin: 2rem 0;
+			figcaption {
+				margin-top: 0.8rem;
+				@include font(14, 20, 0);
+				@include break() {
+					font-size: 1.2rem;
+				}
+			}
+		}
+		img {
+			background: none;
+		}
+		h3 {
+			margin-top: 4rem;
+			margin-bottom: 2rem;
+			@include font(20, 26, 60);
+			padding-left: 2rem;
+			padding-right: 2rem;
+			padding-top: 1.2rem;
+			padding-bottom: 1.2rem;
+			position: relative;
+			border-left: 3px solid var(--red);
+			background: var(--bg-color);
+			@include break() {
+				border-left: 2px solid var(--red);
+				margin-top: 3rem;
+				margin-bottom: 2rem;
+				font-size: 1.6rem;
+				padding-top: 1rem;
+				padding-bottom: 1rem;
+			}
+		}
+		h4 {
+			margin-top: 4rem;
+			margin-bottom: 3rem;
+			font-weight: bold;
+			@include font(18, 26, 30);
+			@include break() {
+				margin-top: 3rem;
+				margin-bottom: 2rem;
+				font-size: 1.6rem;
+			}
+		}
+		p {
+			margin-top: 3rem;
+			margin-bottom: 3rem;
+			@include font(16, 32, 60);
+			@include break() {
+				margin-top: 2rem;
+				margin-bottom: 2rem;
+				font-size: 1.4rem;
+			}
+		}
+
+		ol {
+			counter-reset: number 0;
+			li {
+				&::before {
+					content: counter(number) ".";
+					counter-increment: number 1;
+					margin-right: 0.5rem;
+				}
+			}
+		}
+
+		ul {
+			li {
+				&::before {
+					content: "・";
+				}
+			}
+		}
+
+		ul,
+		ol {
+			display: flex;
+			flex-direction: column;
+			border-radius: 1.5rem;
+			padding: 3rem 2rem;
+			margin-top: 3rem;
+			margin-bottom: 3rem;
+			background: var(--bg-color);
+			@include break() {
+				padding: 2rem 1.5rem;
+			}
+			li {
+				padding-left: 1em;
+				text-indent: -1em;
+				@include font(16, 24, 20);
+				@include break() {
+					font-size: 1.4rem;
+				}
+				&:not(:last-child) {
+					padding-bottom: 1.5rem;
+					margin-bottom: 1.5rem;
+					border-bottom: dotted 1px var(--black);
+				}
+			}
+		}
+		a {
+			position: relative;
+			color: var(--red);
+			@include hover {
+				&::after {
+					scale: 0 1;
+				}
+			}
+			&::after {
+				content: "";
+				background: var(--red);
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				scale: 1 1;
+				height: 1px;
+				transform-origin: right top;
+				width: 100%;
+				transition: scale 0.3s;
+			}
+			&.btn {
+				color: var(--black);
+			}
+		}
+	}
+}

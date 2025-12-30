@@ -1,0 +1,115 @@
+@use "../information" as *;
+
+.sns {
+	&--mt {
+		margin-top: 2rem;
+		@include break() {
+			margin-top: 1.5rem;
+		}
+	}
+
+	&--mv {
+		position: absolute;
+		bottom: 2.5rem;
+		right: 3rem;
+		z-index: 10;
+		@include break() {
+			right: 1.5rem;
+			bottom: 1.5rem;
+		}
+		.sns {
+			&__list {
+				gap: 1.5rem;
+				@include break() {
+					gap: 1rem;
+				}
+			}
+			&__link {
+				&--x {
+					width: 2.3rem;
+					@include break() {
+						width: 2.1rem;
+					}
+				}
+				&--instagram {
+					width: 2.6rem;
+					@include break() {
+						width: 2.4rem;
+					}
+				}
+				&--note {
+					width: 6.2rem;
+					@include break() {
+						width: 5rem;
+					}
+				}
+			}
+		}
+	}
+
+	&__list {
+		display: flex;
+		align-items: center;
+		gap: 1.2rem;
+		&--right {
+			justify-content: flex-end;
+		}
+	}
+	&__item {
+	}
+	&__link {
+		display: block;
+		height: auto;
+		transition: opacity 0.3s;
+		&:hover {
+			opacity: 0.5;
+		}
+		&:focus {
+			opacity: 0.5;
+		}
+		&--white {
+			background-color: var(--white);
+		}
+		&--black {
+			background-color: var(--black);
+		}
+		&--instagram {
+			margin-bottom: -1px;
+			width: 2.2rem;
+			aspect-ratio: 20 / 18;
+			-webkit-mask-image: url($imgs + "/common/instagram.svg");
+			-webkit-mask-size: contain;
+			-webkit-mask-repeat: no-repeat;
+			-webkit-mask-position: center;
+			mask-image: url($imgs + "/common/instagram.svg");
+			mask-size: contain;
+			mask-repeat: no-repeat;
+			mask-position: center;
+		}
+		&--x {
+			width: 1.9rem;
+			aspect-ratio: 20 / 20;
+			-webkit-mask-image: url($imgs + "/common/x.svg");
+			-webkit-mask-size: contain;
+			-webkit-mask-repeat: no-repeat;
+			-webkit-mask-position: center;
+			mask-image: url($imgs + "/common/x.svg");
+			mask-size: contain;
+			mask-repeat: no-repeat;
+			mask-position: center;
+		}
+		&--note {
+			margin-left: 0.2rem;
+			width: 6.2rem;
+			aspect-ratio: 615 / 232;
+			-webkit-mask-image: url($imgs + "/common/note.svg");
+			-webkit-mask-size: contain;
+			-webkit-mask-repeat: no-repeat;
+			-webkit-mask-position: center;
+			mask-image: url($imgs + "/common/note.svg");
+			mask-size: contain;
+			mask-repeat: no-repeat;
+			mask-position: center;
+		}
+	}
+}

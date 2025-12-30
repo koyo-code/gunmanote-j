@@ -1,0 +1,60 @@
+@use "../common" as *;
+
+[data-page="single-articles"] {
+	.page-info {
+		&__inner {
+			&--deco {
+				position: relative;
+				&::before {
+					content: "";
+					width: 0.4rem;
+					height: 100%;
+					position: absolute;
+					top: 50%;
+					left: 0;
+					translate: 0 -50%;
+					background: var(--red);
+				}
+			}
+		}
+		&__date {
+			@include font(14, 14, 0);
+			text-align: right;
+			margin-bottom: 1rem;
+			@include break() {
+				margin-bottom: 0.5rem;
+				font-size: 1.3rem;
+			}
+			&-icon {
+				width: 1.4rem;
+				margin-right: 0.5rem;
+			}
+		}
+
+		&__category {
+			display: block;
+			color: var(--white);
+			background: var(--red);
+			width: fit-content;
+			padding: 0.5rem 1.5rem;
+			@include font(14, 14, 0);
+			margin-bottom: 1rem;
+			@include break() {
+				font-size: 1.3rem;
+			}
+		}
+
+		&__title {
+			font-family: var(--mont);
+			@include font(28, 38, 0);
+			margin-bottom: 2rem;
+			@include break() {
+				font-size: 2.2rem;
+				margin-bottom: 1.5rem;
+			}
+		}
+		&__img {
+			margin-bottom: 3rem;
+		}
+	}
+}

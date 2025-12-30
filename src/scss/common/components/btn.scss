@@ -1,0 +1,53 @@
+@use "../information" as *;
+
+.btn {
+	display: flex !important;
+	align-items: center;
+	gap: 1rem;
+	background: var(--white);
+	border: solid 1px var(--black);
+	padding: 1.5rem 1rem 1.5rem 2rem;
+	width: fit-content;
+	border-radius: 1rem;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+	transition: color 0.3s, background 0.3s;
+	@include hover {
+		color: var(--white);
+		background: var(--green);
+		border-color: var(--green);
+		&::after {
+			background: var(--white);
+		}
+	}
+
+	&--left {
+		margin-left: 0;
+	}
+	&--right {
+		margin-right: 0;
+	}
+	&--reverse {
+		flex-direction: row-reverse;
+		padding: 1.5rem 2rem 1.5rem 1rem;
+		&::after {
+			rotate: 180deg;
+		}
+	}
+	&::after {
+		content: "";
+		height: auto;
+		width: 0.8rem;
+		aspect-ratio: 10 / 11;
+		clip-path: polygon(0 0, 0% 100%, 100% 50%);
+		background: var(--black);
+		transition: background 0.3s;
+	}
+	&__text {
+		@include font(16, 16, 0);
+		@include break() {
+			font-size: 1.4rem;
+		}
+	}
+}

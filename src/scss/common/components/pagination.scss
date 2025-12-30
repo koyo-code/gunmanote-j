@@ -1,0 +1,40 @@
+@use "../information" as *;
+
+.page-numbers {
+	display: flex;
+	justify-content: center;
+	gap: 0.8rem;
+	@include break() {
+		gap: 0.5rem;
+	}
+	li {
+		display: flex;
+		align-items: center;
+	}
+	li > a,
+	li > span.current {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		@include font(14, 14, 0);
+		height: auto;
+		width: 4rem;
+		aspect-ratio: 1;
+		color: var(--black);
+		background: var(--white);
+		border: solid 1px var(--black);
+		border-radius: 0.8rem;
+		transition: color 0.3s, background 0.3s;
+		@include break() {
+			width: 3.6rem;
+			font-size: 1.2rem;
+		}
+	}
+
+	li > span.current,
+	li > a:hover {
+		color: var(--white);
+		background: var(--green);
+		border: solid 1px var(--green);
+	}
+}
